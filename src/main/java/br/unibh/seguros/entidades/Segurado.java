@@ -21,12 +21,18 @@ public class Segurado extends Pessoa{
 	
 	public Segurado(){}
 	
-	public Segurado(String classe, String numeroRG, String orgaoExpedidorRG,
-			String numeroHabilitacao, String tipoHabilitacao,
-			Date dataValidadeHabilitacao, Date dataPrimeiraHabilitacao,
-			String logradouro, String numero, String complemento, String cep,
-			String bairro, String cidade, String estado) {
-		super();
+	
+	public Segurado(Long id, String nome, String sexo, String cpf,
+			String telefoneComercial, String telefoneResidencial,
+			String telefineCelular, String email, Date dataNascimento,
+			Date dataCadastro, String classe, String numeroRG,
+			String orgaoExpedidorRG, String numeroHabilitacao,
+			String tipoHabilitacao, Date dataValidadeHabilitacao,
+			Date dataPrimeiraHabilitacao, String logradouro, String numero,
+			String complemento, String cep, String bairro, String cidade,
+			String estado) {
+		super(id, nome, sexo, cpf, telefoneComercial, telefoneResidencial,
+				telefineCelular, email, dataNascimento, dataCadastro);
 		this.classe = classe;
 		this.numeroRG = numeroRG;
 		this.orgaoExpedidorRG = orgaoExpedidorRG;
@@ -42,7 +48,9 @@ public class Segurado extends Pessoa{
 		this.cidade = cidade;
 		this.estado = estado;
 	}
-	
+
+
+
 	public String getClasse() {
 		return classe;
 	}
@@ -127,12 +135,27 @@ public class Segurado extends Pessoa{
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-	
-	
+
+
+	@Override
+	public String toString() {
+		return "Segurado [classe=" + classe + ", numeroRG=" + numeroRG
+				+ ", orgaoExpedidorRG=" + orgaoExpedidorRG
+				+ ", numeroHabilitacao=" + numeroHabilitacao
+				+ ", tipoHabilitacao=" + tipoHabilitacao
+				+ ", dataValidadeHabilitacao=" + dataValidadeHabilitacao
+				+ ", dataPrimeiraHabilitacao=" + dataPrimeiraHabilitacao
+				+ ", logradouro=" + logradouro + ", numero=" + numero
+				+ ", complemento=" + complemento + ", cep=" + cep + ", bairro="
+				+ bairro + ", cidade=" + cidade + ", estado=" + estado
+				+ ", toString()=" + super.toString() + "]";
+	}
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = 1;
+		int result = super.hashCode();
 		result = prime * result + ((bairro == null) ? 0 : bairro.hashCode());
 		result = prime * result + ((cep == null) ? 0 : cep.hashCode());
 		result = prime * result + ((cidade == null) ? 0 : cidade.hashCode());
@@ -164,11 +187,13 @@ public class Segurado extends Pessoa{
 				+ ((tipoHabilitacao == null) ? 0 : tipoHabilitacao.hashCode());
 		return result;
 	}
+
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
+		if (!super.equals(obj))
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
@@ -246,19 +271,6 @@ public class Segurado extends Pessoa{
 		} else if (!tipoHabilitacao.equals(other.tipoHabilitacao))
 			return false;
 		return true;
-	}
-	
-	@Override
-	public String toString() {
-		return "Segurado [classe=" + classe + ", numeroRG=" + numeroRG
-				+ ", orgaoExpedidorRG=" + orgaoExpedidorRG
-				+ ", numeroHabilitacao=" + numeroHabilitacao
-				+ ", tipoHabilitacao=" + tipoHabilitacao
-				+ ", dataValidadeHabilitacao=" + dataValidadeHabilitacao
-				+ ", dataPrimeiraHabilitacao=" + dataPrimeiraHabilitacao
-				+ ", logradouro=" + logradouro + ", numero=" + numero
-				+ ", complemento=" + complemento + ", cep=" + cep + ", bairro="
-				+ bairro + ", cidade=" + cidade + ", estado=" + estado + "]";
 	}
 	
 }

@@ -1,5 +1,7 @@
 package br.unibh.seguros.entidades;
 
+import java.util.Date;
+
 public class Funcionario extends Pessoa {
 
 	private String setor;
@@ -9,12 +11,13 @@ public class Funcionario extends Pessoa {
 
 	public Funcionario(){}
 	
-	public Funcionario(String setor, String perfil, String login, String senha) {
-		super();
-		this.setor = setor;
-		this.perfil = perfil;
-		this.login = login;
-		this.senha = senha;
+
+	public Funcionario(Long id, String nome, String sexo, String cpf,
+			String telefoneComercial, String telefoneResidencial,
+			String telefineCelular, String email, Date dataNascimento,
+			Date dataCadastro) {
+		super(id, nome, sexo, cpf, telefoneComercial, telefoneResidencial,
+				telefineCelular, email, dataNascimento, dataCadastro);
 	}
 
 	public String getSetor() {
@@ -49,21 +52,24 @@ public class Funcionario extends Pessoa {
 		this.senha = senha;
 	}
 
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = 1;
+		int result = super.hashCode();
 		result = prime * result + ((login == null) ? 0 : login.hashCode());
 		result = prime * result + ((perfil == null) ? 0 : perfil.hashCode());
 		result = prime * result + ((senha == null) ? 0 : senha.hashCode());
+		result = prime * result + ((setor == null) ? 0 : setor.hashCode());
 		return result;
 	}
+
 
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
+		if (!super.equals(obj))
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
@@ -83,13 +89,19 @@ public class Funcionario extends Pessoa {
 				return false;
 		} else if (!senha.equals(other.senha))
 			return false;
+		if (setor == null) {
+			if (other.setor != null)
+				return false;
+		} else if (!setor.equals(other.setor))
+			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Funcionario [perfil=" + perfil + ", login=" + login
-				+ ", senha=" + senha + "]";
+		return "Funcionario [setor=" + setor + ", perfil=" + perfil
+				+ ", login=" + login + ", senha=" + senha + ", toString()="
+				+ super.toString() + "]";
 	}
 
 }
